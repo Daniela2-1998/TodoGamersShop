@@ -1,4 +1,7 @@
 package Daniela.TodoGamersShop.Repositories;
 
-public interface JuegosRepositorio {
+import Daniela.TodoGamersShop.Entities.Juegos;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface JuegosRepositorio extends JpaRepository<Juegos, Integer> {
 }
