@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>Inicio</title>
+</head>
+<body>
+  <!-- titulos en pantalla -->
+  <div layout:fragment="content">
+      <h1 class="display-1 text-success">Venta de videojuegos, accesorios, consolas y electrónicos.</h1>
+      <h1 class="display-1 text-success">Reparación de consolas y electrónicos.</h1>
+  </div>
+
+  <!-- subtitulos: NUEVOS LANZAMIENTOS -->
+  <h4 class="text-danger mt-5">Nuevos lanzamientos</h4>
+
+  <div class="row">
+      <div class="col-md-3 my-5" th:each="juegos : ${ultimosjuegos}" th:object="${juegos}">
+          <a th:href="@{juegos/{id}(id=*{id})}" class="card shadow-lg" style="text-decoration:none;">
+          <img th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{titulo}" class="card-img-top">
+          <div class="card-body">
+              <h2 class="card-title fs-6" th:text="*{titulo}"></h2>
+              <p th:text="*{#temporals.format(fechaEstreno, 'dd/MM/yyyy')}" class="text-muted small"></p>
+          </div>
+          </a>
+      </div>
+  </div>>
+
+  <!-- subtitulos: PREVENTAS-->
+  <h4 class="text-danger mt-5">Preventas</h4>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <div layout:fragment="form">
+        <br>
+        <form action="" method="post" th:object="{juego}"
+              enctype="multipart/form-data">
+            <!-- titulo -->
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Titulo : </label>
+                <input type="text" id="titulo" placeholder="Escriba el titulo"
+                       class="form-control" th:field="*{titulo}">
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('titulo')}"
+                     th:errors=""*{titulo}></div>
+            </div>
+            <!-- descripcion -->
+            <div>
+                <label for="descripcion" class="form-label">Descripcion:</label>
+                <textarea id="descripcion" placeholder="Escriba la descripción"
+                          class="form-control" th:field=""*{descripcion}></textarea>
+                <div class="invalidad-feedback"
+                     th:if="${#fields.hasErrors('descripcion')}"
+                     th:errors="*{descripcion}"></div>
+            </div>
+            <!-- personajes -->
+            <div class="mb-3">
+                <label for="personajes" class="form-label">Personajes: </label>
+                <input type="text" id="personajes" placeholder="Escriba el nombre de los protagonistas"
+                       class="form-control" th:field="*{personajes}">
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('personajes')}"
+                     th:errors=""*{personajes}></div>
+            </div>
+            <!-- fecha estreno -->
+            <div class="mb-3">
+                <label for="fechaEstreno" class="form-label">Fecha de estreno: </label>
+                <input type="date" id="fechaEstreno" placeholder="Escriba la fecha de lanzamiento"
+                       class="form-control" th:field="*{fechaEstreno}">
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('fechaEstreno')}"
+                     th:errors=""*{fechaEstreno}></div>
+            </div>
+            <!-- youtubeTrailerid -->
+            <div class="mb-3">
+                <label for="youtubeTrailerid" class="form-label">Youtube Trailer id: </label>
+                <input type="text" id="youtubeTrailerid" placeholder="Escriba el youtube Trailer id"
+                       class="form-control" th:field="*{youtubeTrailerid}">
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('youtubeTrailerid')}"
+                     th:errors=""*{youtubeTrailerid}></div>
+            </div>
+            <!-- portada -->
+            <div class="mb-3">
+                <label for="portada" class="form-label">Portada: </label>
+                <input type="file" name="portada" id="portada"
+                       class="form-control" th:field="*{portada}">
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('portada')}"
+                     th:errors=""*{portada}></div>
+            </div>
+            <!-- generos -->
+            <div class="mb-3">
+                <label for="generos" class="form-label">Generos: </label>
+                <select id="generos" class="form-control" th:field="*{generos}" multiple>
+                    <option th:each="genero : ${generos}" th:value="${genero.id}}"
+                            th:text="${genero.titulo}"></option>
+                </select>
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('generos')}"
+                     th:errors=""*{generos}></div>
+            </div>
+            <!-- plataformas -->
+            <div class="mb-3">
+                <label for="plataformas" class="form-label">Plataformas: </label>
+                <select id="plataformas" class="form-control" th:field="*{plataformas}" multiple>
+                    <option th:each="plataformas : ${plataformas}" th:value="${plataformas.id}}"
+                            th:text="${plataformas.titulo}"></option>
+                </select>
+                <div class="invalidad-feedback"
+                     th:if="{#fields.hasErrors('plataformas')}"
+                     th:errors=""*{plataformas}></div>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Guardar</button>>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
